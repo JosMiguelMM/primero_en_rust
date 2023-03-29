@@ -2,7 +2,7 @@
 use csv::{ReaderBuilder, StringRecord};
 use std::{fs};
 
-const FILENAME: &str = "history.csv"; //nombre del archivo .csv
+const FILENAME: &str = "history.csv"; //nombre del archivo .csv para el juego
 
 //TIPO; TAG; TEXTO; VIDA
 #[derive(Debug)]
