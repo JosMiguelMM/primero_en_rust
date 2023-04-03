@@ -2,6 +2,7 @@
 use csv::{ReaderBuilder, StringRecord};
 use std::{fs};
 use std::collections::{HashMap};
+use std::thread::current;
 
 const FILENAME: &str = "history.csv";
 //nombre del archivo .csv para el juego
@@ -72,6 +73,27 @@ fn main() {
             for (indice,option) in data.opciones.iter().enumerate(){
                 println!("[{}] {}", indice, option.texto);
             }
+
+            let mut seleccion=String::new();
+            std::io::stdin().read_line(&mut seleccion).unwrap();
+            let seleccion =seleccion.trim().parse().unwrap_or(99);
+
+            if let Some(opcion_elegida)=data.opciones.get(seleccion){
+                tag_actual=&opcion_elegida.tag;
+            }else{
+                println!("Comando no valido");
+            }
+
+            vida+=data.vida;
+            println!(" ");
+
+
+        }else {
+            break;
+        }
+        //si la vida es menor que 0
+        if vida<=0 {
+            println!("Has perdido");
             break;
         }
     }
